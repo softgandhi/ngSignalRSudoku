@@ -1,0 +1,12 @@
+﻿<div>
+    <h3>Welcome to Sudoku Group Play: {{groupName}}</h3>
+    <p>Hurry!! start filling up sudoku and contribute as much as possible</p>
+    <div class="sudoku">
+        <div class="sudoku-row" ng-repeat="row in sudoku.Grid">
+            <input type="number" class="sudoku-cell" ng-repeat="cell in row.Cells"
+                   min="0" max="9" step="1" maxlength="1" ng-readonly="cell.Freezed"
+                   ng-class="{'sudoku-cell-readonly': cell.Freezed, 'has-success': cell.IsCorrect}"
+                   ng-change="onCellChange(cell);" ng-model="cell.Data" />
+        </div>
+    </div>
+</div>

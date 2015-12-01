@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Group Sudoku Application</title>
+    <meta charset="utf-8" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' />
+    <link href="css/sudoku.css" rel="stylesheet" />
+</head>
+<body ng-app="app">
+    <div class="container body-content">
+        <h2>Group Sudoku Application</h2>
+        <hr class="sm" />
+
+        <div ng-view></div>
+        <hr class="sm" />
+        <footer>
+            <p>Copyright &copy; Anurag Gandhi.</p>
+        </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-sanitize.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
+    <!-- app related scripts. Consider bundling and minifying in your app. -->
+    <script src="Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="signalr/hubs"></script>
+    <script src="app/app.js"></script>
+    <script src="app/app.route.js"></script>
+    <script src="app/services/sudokuService.js"></script>
+    <script src="app/sudoku/sudokuHomeCtrl.js"></script>
+    <script src="app/sudoku/sudokuPlayCtrl.js"></script>
+</body>
+</html>

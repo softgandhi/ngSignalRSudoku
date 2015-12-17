@@ -98,6 +98,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\groups\create.html" />
+    <Content Include="app\groups\groupCreateCtrl.js" />
     <Content Include="packages.config" />
     <Content Include="app\app.route.js" />
     <None Include="Web.Debug.config">

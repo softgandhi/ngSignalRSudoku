@@ -14,13 +14,18 @@
               controller: 'sudokuPlayCtrl'
           },
           {
+              url: '/groups/create',
+              template: 'app/groups/create.html',
+              controller: 'groupCreateCtrl'
+          },
+          {
               url: '/gameOver',
               template: 'app/sudoku/gameOver.html',
               controller: 'gameOverCtrl'
           }
       ];
 
-      routes.forEach(function (r, index) {
+      routes.forEach(function (r) {
           $routeProvider.when(r.url, { templateUrl: r.template, controller: r.controller });
       });
 

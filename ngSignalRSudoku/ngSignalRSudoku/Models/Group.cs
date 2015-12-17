@@ -19,7 +19,7 @@ namespace ngSignalRSudoku.Models
         public Group(string name, string createdBy)
         {
             Name = name;
-            createdBy = CreatedBy;
+            CreatedBy = createdBy;
         }
     }
 }

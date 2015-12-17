@@ -18,13 +18,12 @@ var sudokuPlayCtrl = function ($scope, sudokuService, $routeParams) {
     });
 
     sudokuService.init().then(function () {
-        sudokuService.invoke('getSudoku', 'Global');
+        sudokuService.invoke('getSudoku', $scope.groupName);
     });
 
     $scope.onCellChange = function (cell) {
         //sudokuService.invoke('updateCell', { groupName: $scope.groupName, cell: cell });
         sudokuService.server.updateCell($scope.groupName, cell);
-        console.log('cell change called.');
     }
 }
 

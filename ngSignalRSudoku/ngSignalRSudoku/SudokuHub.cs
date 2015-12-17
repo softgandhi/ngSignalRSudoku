@@ -11,30 +11,39 @@ namespace ngSignalRSudoku
     [HubName("sudokuHub")]
     public class SudokuHub : Hub
     {
-        public static List<Group> _Gropus = new List<Group>();
+        //public static List<Group> _Gropus = new List<Group>();
 
         public SudokuHub()
         {
-            if (!_Gropus.Any(x => x.Name == "Global"))
-                _Gropus.Add(new Group("Global", "System"));
+            if (!db.Gropus.Any(x => x.Name == "Global"))
+                db.Gropus.Add(new Group("Global", "System"));
         }
 
+        public void CreateGroup(string name, string userName)
+        {
+            if (!db.Gropus.Any(x => x.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase)))
+                db.Gropus.Add(new Group(name, userName));
+
+            Clients.All.groupCreated(db.Gropus);
+        }
         public void GetGroups()
         {
-            Clients.All.getGroups(_Gropus);
+            Clients.All.getGroups(db.Gropus);
         }
 
         public void GetSudoku(string groupName)
         {
-            var group = _Gropus.FirstOrDefault(x => x.Name.Equals(groupName));
-            Clients.All.getSudoku(db.GetSudoku(groupName));
+            var group = db.Gropus.FirstOrDefault(x => x.Name.Equals(groupName, StringComparison.CurrentCultureIgnoreCase));
+            Clients.Caller.getSudoku(db.GetSudoku(groupName));
         }
+
         public void UpdateCell(string groupName, GridCell cell)
         {
             db.UpdateSudoku(groupName, cell);
             var sudoku = db.GetSudoku(groupName);  // updated sudoku.//
+            var updatedCell = sudoku.Grid[cell.RowIndex].Cells[cell.ColIndex];
 
-            Clients.All.cellUpdated(cell, sudoku);
+            Clients.All.cellUpdated(updatedCell, sudoku);
         }
     }
 }

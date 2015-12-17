@@ -1,0 +1,22 @@
+﻿<div>
+    <h2>Create New Group</h2>
+    <form name="createGroupForm" novalidate></form>
+    <div class="row">
+        <label class="col-md-6">Group Name:</label>
+        <div class="col-md-6">
+            <input type="text" required="required" class="form-control" ng-model="group.name" />
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-md-6">Your Name:</label>
+        <div class="col-md-6">
+            <input type="text" required="required" class="form-control" ng-model="group.owner" />
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-primary" ng-click="createGroup();">Create Group</button>
+        <a class="btn btn-default" href="#/">Cancel</a>
+
+    </div>
+</div>

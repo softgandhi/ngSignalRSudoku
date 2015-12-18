@@ -24,6 +24,8 @@ namespace ngSignalRSudoku
             if (!db.Gropus.Any(x => x.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase)))
                 db.Gropus.Add(new Group(name, userName));
 
+            Groups.Add(Context.ConnectionId, name);
+
             Clients.All.groupCreated(db.Gropus);
         }
         public void GetGroups()
@@ -34,6 +36,10 @@ namespace ngSignalRSudoku
         public void GetSudoku(string groupName)
         {
             var group = db.Gropus.FirstOrDefault(x => x.Name.Equals(groupName, StringComparison.CurrentCultureIgnoreCase));
+
+            //Add the user to this group while getting Sudoku.//
+            Groups.Add(Context.ConnectionId, groupName);
+
             Clients.Caller.getSudoku(db.GetSudoku(groupName));
         }
 
@@ -43,7 +49,8 @@ namespace ngSignalRSudoku
             var sudoku = db.GetSudoku(groupName);  // updated sudoku.//
             var updatedCell = sudoku.Grid[cell.RowIndex].Cells[cell.ColIndex];
 
-            Clients.All.cellUpdated(updatedCell, sudoku);
+            // Trigger the update to all users of that Group.//
+            Clients.Group(groupName).cellUpdated(updatedCell, sudoku);
         }
     }
 }
